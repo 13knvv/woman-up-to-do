@@ -1,0 +1,10 @@
+.header {
+  padding: $padding-header-top-bottom $padding-app-left-right;
+  background-color: rgb(34, 152, 248);
+
+  h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+  }
+}

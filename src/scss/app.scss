@@ -1,0 +1,15 @@
+@import "~normalize.css/normalize.css";
+@import './variables';
+@import './all';
+
+body {
+  background-color: $color-background;
+}
+
+.app_container {
+  max-width: 500px;
+  margin: 2.687rem auto;
+  border-radius: 1rem;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+}
