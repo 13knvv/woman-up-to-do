@@ -1,49 +1,25 @@
-import { useState } from 'react'
-import { IToDo } from '../ToDoList/ToDoList'
+import { observer } from 'mobx-react-lite'
+import { useNavigate } from 'react-router-dom'
+import { IToDo } from '../../MobX/ToDoStore'
 
 interface IPropsToDo {
   toDo: IToDo
-  handleChangeInput: (id: number, field: string, e: any) => void
 }
 
 const ToDo = (props: IPropsToDo) => {
-  const [isEditMode, setIsEditMode] = useState<boolean>(false)
+  const navigate = useNavigate()
 
-  const onChangeInput = (id: number, field: string, e: any) => {
-    props.handleChangeInput(id, field, e)
-  }
-
-  const changeEditMode = (boolean: boolean) => {
-    setIsEditMode(boolean)
+  const changeEditMode = () => {
+    navigate(`edit/${props.toDo.id}`)
   }
 
   return (
     <li>
-      {isEditMode ? (
-        <>
-          <input
-            type="text"
-            value={props.toDo.title}
-            placeholder="Заголовок"
-            onChange={(e) => onChangeInput(props.toDo.id, 'title', e)}
-          />
-          <input
-            type="text"
-            value={props.toDo.text}
-            placeholder="Текст"
-            onChange={(e) => onChangeInput(props.toDo.id, 'text', e)}
-          />
-          <button onClick={() => changeEditMode(false)}>ok</button>
-        </>
-      ) : (
-        <>
-          <h2>{props.toDo.title}</h2>
-          <div>{props.toDo.text}</div>
-          <button onClick={() => changeEditMode(true)}>Edit</button>
-        </>
-      )}
+      <input type="checkbox" name="" id="" />
+      <h2 onClick={changeEditMode}>{props.toDo.title}</h2>
+      <div onClick={changeEditMode}>{props.toDo.text}</div>
     </li>
   )
 }
 
-export default ToDo
+export default observer(ToDo)

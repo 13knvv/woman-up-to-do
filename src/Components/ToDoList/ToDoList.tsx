@@ -1,53 +1,31 @@
-import { useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
+import { useStores } from '../../MobX/stores'
+import { IToDo } from '../../MobX/ToDoStore'
 import ToDo from '../ToDo/ToDo'
 
-const todoArr = [
-  { id: 0, title: 'Загол', text: 'Сделать ToDo лист', completionDate: '28.11.2022', files: [] },
-  { id: 1, title: 'Заголовок', text: 'Сделать ToDo лист', completionDate: '28.11.2022', files: [] },
-  { id: 2, title: 'Заголовок', text: 'Сделать ToDo лист', completionDate: '28.11.2022', files: [] },
-]
-
-export interface IToDo {
-  id: number
-  title: string
-  text: string
-  completionDate: string
-  files: Array<any>
-}
-
 const ToDoList = () => {
-  const [toDoArr, setToDoArr] = useState<IToDo[]>([])
+  const { toDoStore } = useStores()
+  const toDoList = toDoStore.toDoList
 
   useEffect(() => {
-    setToDoArr(todoArr)
+    //toDoStore.getToDoList()
   }, [])
 
-  const handleChangeInput = (id: number, field: string, e: any) => {
-    const newToDoArr = toDoArr.map((toDo) => {
-      if (toDo.id === id) {
-        return { ...toDo, [field]: e.target.value }
-      }
-      return toDo
-    })
-    setToDoArr(newToDoArr)
-  }
-
-  const toDoList = toDoArr.map((toDo: IToDo) => {
-    return <ToDo key={toDo.id} toDo={toDo} handleChangeInput={handleChangeInput} />
+  const toDoComponentsList = toDoList.map((toDo: IToDo) => {
+    return <ToDo key={toDo.id} toDo={toDo} />
   })
 
   const onClickAddToDo = () => {}
-  const onClickOpenPopupAddToDo = () => {}
 
   return (
     <div>
-      <ul>{toDoList}</ul>
+      <ul>{toDoComponentsList}</ul>
       <div>
-        <button onClick={onClickOpenPopupAddToDo}>Добавить</button>
-        <button onClick={onClickAddToDo}>Готово</button>
+        <button onClick={onClickAddToDo}>+</button>
       </div>
     </div>
   )
 }
 
-export default ToDoList
+export default observer(ToDoList)
