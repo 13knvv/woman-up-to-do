@@ -38,18 +38,17 @@ const ToDoEdit = () => {
 
   return (
     <li>
-      <button onClick={onClickBack}>back</button>
       {isEditMode ? (
         <>
           <input
             type="text"
-            value={toDo?.title}
+            value={toDo.title}
             placeholder="Заголовок"
             onChange={(e) => onChangeInput('title', e)}
           />
           <input
             type="text"
-            value={toDo?.text}
+            value={toDo.text}
             placeholder="Текст"
             onChange={(e) => onChangeInput('text', e)}
           />
@@ -58,9 +57,11 @@ const ToDoEdit = () => {
         </>
       ) : (
         <>
+          {/* <input type="checkbox" name="" id="" /> */}
           <h2>{toDo?.title}</h2>
           <div>{toDo?.text}</div>
-          <button>Выполненно</button>
+
+          <button onClick={onClickBack}>Назад</button>
           <button onClick={onClickEdit}>Редактировать</button>
         </>
       )}
