@@ -1,16 +1,21 @@
 import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useStores } from '../../MobX/stores'
+import FormToDo from '../FormToDo/FormToDo'
 
 const NewToDo = () => {
   const { toDoStore } = useStores()
-  const newToDo = toDoStore.newToDo
+  const newToDo = toDoStore.intermediateToDo
   const navigate = useNavigate()
 
+  useEffect(() => {
+    toDoStore.clearIntermediateToDo()
+    return () => toDoStore.clearIntermediateToDo()
+  }, [])
 
   const onChangeInput = (field: string, e: any) => {
-    toDoStore.changeNewToDo(field, e)
+    toDoStore.changeIntermediateToDo(field, e)
   }
 
   const onClickSave = () => {
@@ -19,27 +24,15 @@ const NewToDo = () => {
   }
 
   const onClickСancel = () => {
-    toDoStore.clearNewToDo()
     navigate(`/`)
   }
 
   return (
-    <li>
-      <input
-        type="text"
-        value={newToDo.title}
-        placeholder="Заголовок"
-        onChange={(e) => onChangeInput('title', e)}
-      />
-      <input
-        type="text"
-        value={newToDo.text}
-        placeholder="Текст"
-        onChange={(e) => onChangeInput('text', e)}
-      />
+    <div>
+      <FormToDo />
       <button onClick={onClickСancel}>Отмена</button>
       <button onClick={onClickSave}>Сохранить</button>
-    </li>
+    </div>
   )
 }
 

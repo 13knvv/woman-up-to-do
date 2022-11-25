@@ -2,21 +2,21 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useStores } from '../../MobX/stores'
+import Files from '../Files/Files'
+import FormToDo from '../FormToDo/FormToDo'
 
 const ToDoEdit = () => {
   const { toDoStore } = useStores()
-  const toDo = toDoStore.editableToDo
+  const toDo = toDoStore.intermediateToDo
+  const files = toDoStore.intermediateToDo.files
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const { id } = useParams()
   const navigate = useNavigate()
 
   useEffect(() => {
-    toDoStore.setEditableToDo(Number(id))
+    toDoStore.setIntermediateToDo(Number(id))
+    return () => toDoStore.clearIntermediateToDo()
   }, [])
-
-  const onChangeInput = (field: string, e: any) => {
-    toDoStore.changeEditableToDo(field, e)
-  }
 
   const onClickSave = () => {
     setIsEditMode(false)
@@ -29,7 +29,7 @@ const ToDoEdit = () => {
 
   const onClickСancel = () => {
     setIsEditMode(false)
-    toDoStore.setEditableToDo(Number(id))
+    toDoStore.setIntermediateToDo(Number(id))
   }
 
   const onClickBack = () => {
@@ -37,35 +37,30 @@ const ToDoEdit = () => {
   }
 
   return (
-    <li>
+    <div>
       {isEditMode ? (
         <>
-          <input
-            type="text"
-            value={toDo.title}
-            placeholder="Заголовок"
-            onChange={(e) => onChangeInput('title', e)}
-          />
-          <input
-            type="text"
-            value={toDo.text}
-            placeholder="Текст"
-            onChange={(e) => onChangeInput('text', e)}
-          />
+          <FormToDo />
           <button onClick={onClickСancel}>Отмена</button>
           <button onClick={onClickSave}>Сохранить</button>
         </>
       ) : (
         <>
-          {/* <input type="checkbox" name="" id="" /> */}
-          <h2>{toDo?.title}</h2>
-          <div>{toDo?.text}</div>
+          <input
+            type="checkbox"
+            checked={toDo.completed}
+            onChange={(e) => toDoStore.changeCompletedToDo(toDo.id, e)}
+          />
+          <h2>{toDo.title}</h2>
+          <div>Сделать до: {toDo.completionDate}</div>
+          <div>{toDo.text}</div>
+          <Files toDo={toDo} />
 
           <button onClick={onClickBack}>Назад</button>
           <button onClick={onClickEdit}>Редактировать</button>
         </>
       )}
-    </li>
+    </div>
   )
 }
 

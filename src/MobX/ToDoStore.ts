@@ -5,18 +5,32 @@ export interface IToDo {
   title: string
   text: string
   completionDate: string
+  completed: boolean
   files: Array<any>
 }
 
 const todoList = [
-  { id: 0, title: 'Загол', text: 'Сделать ToDo лист', completionDate: '28.11.2022', files: [] },
+  {
+    id: 0,
+    title: 'Загол',
+    text: 'Сделать ToDo лист',
+    completionDate: '2022-11-25',
+    completed: false,
+    files: [],
+  },
 ]
 
 class ToDoStore {
   toDoList: IToDo[] = todoList
 
-  editableToDo: IToDo  = { id: -1, title: '', text: '', completionDate: '', files: [] }
-  newToDo: IToDo = { id: Date.now(), title: '', text: '', completionDate: '', files: [] }
+  intermediateToDo: IToDo = {
+    id: Date.now(),
+    title: '',
+    text: '',
+    completionDate: '',
+    completed: false,
+    files: [],
+  }
 
   constructor() {
     makeAutoObservable(this)
@@ -34,48 +48,63 @@ class ToDoStore {
     return this.toDoList.find((toDo) => toDo.id === id)
   }
 
-  // changeToDoList(id: number, field: string, e: any) {
-  //   const newToDoArr = this.toDoList.map((toDo) => {
-  //     if (toDo.id === id) {
-  //       return { ...toDo, [field]: e.target.value }
-  //     }
-  //     return toDo
-  //   })
-  //   this.setToDoList(newToDoArr)
-  // }
+  changeCompletedToDo(id: number, e: any) {
+    this.toDoList.forEach((toDo, index, arr) => {
+      if (toDo.id === id) {
+        arr[index].completed = e.target.checked
+      }
+    })
+  }
 
-  changeEditableToDo(field: string, e: any) {
-    if (this.editableToDo) {
-      this.editableToDo = { ...this.editableToDo, [field]: e.target.value }
+  changeIntermediateToDo(field: string, e: any) {
+    this.intermediateToDo = { ...this.intermediateToDo, [field]: e.target.value }
+  }
+
+  addIntermediateFileToDo(e: any) {
+    this.intermediateToDo = {
+      ...this.intermediateToDo,
+      files: [...this.intermediateToDo.files, ...Array.from(e.target.files)],
     }
   }
 
-  setEditableToDo(id: number) {
+  deleteFileToDo(index: number) {
+    const copyFiles = this.intermediateToDo.files
+    copyFiles.splice(index, 1)
+    this.intermediateToDo = {
+      ...this.intermediateToDo,
+      files: copyFiles,
+    }
+  }
+
+  setIntermediateToDo(id: number) {
     const toDo = this.getToDoById(id)
     if (toDo) {
-      this.editableToDo = toDo
+      this.intermediateToDo = toDo
     }
   }
 
   saveEditedToDo() {
     this.toDoList.forEach((toDo, index, arr) => {
-      if (toDo.id === this.editableToDo?.id) {
-        arr[index] = this.editableToDo
+      if (toDo.id === this.intermediateToDo?.id) {
+        arr[index] = this.intermediateToDo
       }
     })
   }
 
   saveNewToDo() {
-    this.toDoList.push(this.newToDo)
-    this.clearNewToDo()
+    this.toDoList.push(this.intermediateToDo)
+    this.clearIntermediateToDo()
   }
 
-  changeNewToDo(field: string, e: any) {
-    this.newToDo = { ...this.newToDo, [field]: e.target.value }
-  }
-
-  clearNewToDo() {
-    this.newToDo = { id: Date.now(), title: '', text: '', completionDate: '', files: [] }
+  clearIntermediateToDo() {
+    this.intermediateToDo = {
+      id: Date.now(),
+      title: '',
+      text: '',
+      completionDate: '',
+      completed: false,
+      files: [],
+    }
   }
 }
 
