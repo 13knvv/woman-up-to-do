@@ -8,13 +8,16 @@ import './scss/app.scss'
 
 function App() {
   return (
-    <div className="app_container">
+    <div className="app__container">
       <Header />
-      <Routes>
+      <main className='main'>
+        <Routes>
         <Route path="/" element={<ToDoList />} />
         <Route path="/edit/:id" element={<ToDoEdit />} />
         <Route path="/newToDo" element={<NewToDo />} />
       </Routes>
+      </main>
+      
     </div>
   )
 }

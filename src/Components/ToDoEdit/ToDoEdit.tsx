@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useStores } from '../../MobX/stores'
+import Deadline from '../Deadline/Deadline'
 import Files from '../Files/Files'
 import FormToDo from '../FormToDo/FormToDo'
 
@@ -52,7 +53,7 @@ const ToDoEdit = () => {
             onChange={(e) => toDoStore.changeCompletedToDo(toDo.id, e)}
           />
           <h2>{toDo.title}</h2>
-          <div>Сделать до: {toDo.completionDate}</div>
+          <div>Сделать до: <Deadline completionDate={toDo.completionDate}/></div>
           <div>{toDo.text}</div>
           <Files toDo={toDo} />
 

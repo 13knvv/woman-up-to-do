@@ -1,0 +1,34 @@
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-list-items {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  box-shadow: $box-shadow;
+  margin: 3rem 0 2rem;
+  cursor: pointer;
+
+  svg {
+    width: 80%;
+    height: 80%;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+}

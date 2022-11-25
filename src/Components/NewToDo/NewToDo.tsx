@@ -14,10 +14,6 @@ const NewToDo = () => {
     return () => toDoStore.clearIntermediateToDo()
   }, [])
 
-  const onChangeInput = (field: string, e: any) => {
-    toDoStore.changeIntermediateToDo(field, e)
-  }
-
   const onClickSave = () => {
     toDoStore.saveNewToDo()
     navigate(`/`)

@@ -12,9 +12,17 @@ export interface IToDo {
 const todoList = [
   {
     id: 0,
-    title: 'Загол',
+    title: 'Заголовок большой ну очень при очень',
     text: 'Сделать ToDo лист',
     completionDate: '2022-11-25',
+    completed: false,
+    files: [],
+  },
+  {
+    id: 1,
+    title: 'Загол',
+    text: 'Сделать ToDo лист',
+    completionDate: '2022-12-25',
     completed: false,
     files: [],
   },

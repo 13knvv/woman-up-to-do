@@ -1,0 +1,55 @@
+.todo {
+  display: flex;
+  background-color: rgba(199, 201, 201, 0.432);
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: $box-shadow;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+}
+
+.todo__completed {
+  opacity: 0.3;
+  filter: blur(1px);
+  cursor: default;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
+
+.todo__checkbox-wrapp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+
+  input {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.todo__info {
+  width: 90%;
+  margin-left: 0.5rem;
+}
+.todo__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+}
+
+.todo__text {
+  font-size: 0.9rem;
+}

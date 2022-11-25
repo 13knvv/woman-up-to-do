@@ -1,0 +1,17 @@
+.deadline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0 ;
+  background-color: rgb(190, 190, 190);
+  margin-top: 0.3rem;
+  height: 1.2rem;
+  width: 5rem;
+  font-size: 0.8rem;
+  border-radius: 0.4rem;
+  box-shadow: $box-shadow;
+}
+
+.deadline--red {
+  background-color: rgb(243, 121, 121);
+}
