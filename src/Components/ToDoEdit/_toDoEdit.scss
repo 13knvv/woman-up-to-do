@@ -1,0 +1,45 @@
+.to-do-viewing__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8rem;
+}
+
+.to-do-viewing__checkbox {
+  display: flex;
+  align-items: flex-end;
+
+  input {
+    margin-right: 0.3rem;
+  }
+}
+
+.to-do-viewing__deadline-wrapp {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+
+  span {
+    margin-right: 0.6rem;
+  }
+}
+
+.to-do-viewing__line {
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid $color-background-todo;
+  margin: 1rem 0 0.5rem;
+}
+
+.to-do-viewing__title {
+  margin: 0 0 0.5rem;
+}
+
+.to-do-viewing__text {
+  margin-bottom: 1rem;
+}
+
+.to-do__buttons {
+  display: flex;
+  justify-content: space-between;
+}

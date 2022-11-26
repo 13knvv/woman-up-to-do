@@ -8,7 +8,12 @@
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+h2{
+  font-size: 1.2rem;
+} 
+
 $color-background: #ffffff;
+$color-background-todo: rgba(199, 201, 201, 0.432);
 
 $padding-app-left-right: 1.5rem;
 $padding-header-top-bottom: 0.7rem;
@@ -16,3 +21,5 @@ $padding-header-top-bottom: 0.7rem;
 
 $box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
 $box-shadow-hover: 0px 0px 5px 4px rgba(34, 60, 80, 0.2);
+$box-shadow-button: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
+$box-shadow-button-hover: 0px 0px 7px 2px rgba(47, 48, 49, 0.288);

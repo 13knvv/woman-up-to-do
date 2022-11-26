@@ -1,0 +1,73 @@
+.form {
+  display: grid;
+  row-gap: 2rem;
+  margin-bottom: 1rem;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+
+  &__date {
+    border: none;
+    border-bottom: 2px solid rgb(93, 93, 94);
+    padding: 0.3rem 0.6rem;
+
+    &:focus {
+      border-bottom: 2px solid rgb(0, 102, 255);
+      outline: none;
+    }
+  }
+
+  &__title {
+    width: 60%;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-bottom: 2px solid rgb(93, 93, 94);
+
+    &:focus {
+      border-bottom: 2px solid rgb(0, 102, 255);
+      outline: none;
+    }
+  }
+
+  &__text {
+    width: 100%;
+    height: 200px;
+    resize: none;
+    padding: 0.3rem 0.6rem;
+
+    &:focus {
+      border: 2px solid rgb(0, 102, 255);
+      outline: none;
+    }
+  }
+
+  &__file {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1rem;
+
+    input {
+      opacity: 0;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    div {
+      z-index: -1;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

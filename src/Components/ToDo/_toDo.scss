@@ -1,6 +1,6 @@
 .todo {
   display: flex;
-  background-color: rgba(199, 201, 201, 0.432);
+  background-color: $color-background-todo;
   width: 100%;
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -42,14 +42,16 @@
 .todo__header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 0.4rem;
 
   h2 {
     margin: 0;
-    font-size: 1.2rem;
+    word-break: break-word;
   }
 }
 
 .todo__text {
   font-size: 0.9rem;
+  word-break: break-word;
 }

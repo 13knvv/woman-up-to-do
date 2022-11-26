@@ -1,0 +1,13 @@
+.button {
+  padding: 0.4rem 1.5rem;
+  border-radius: 0.3rem;
+  border: none;
+  box-shadow: $box-shadow-button;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    box-shadow: $box-shadow-button-hover;
+    transform: scale(1.01);
+  }
+}
