@@ -17,14 +17,18 @@ const ToDo = (props: IPropsToDo) => {
     navigate(`edit/${props.toDo.id}`)
   }
 
+  const onChangeCompletedToDo = (e: any) => {
+    toDoStore.changeCompletedToDo(props.toDo.id, e)
+  }
+
+  const onClickDeleteToDo = () => {
+    toDoStore.deleteToDo(props.toDo.id)
+  }
+
   return (
     <li className={props.toDo.completed ? 'todo todo__completed' : 'todo'}>
       <div className="todo__checkbox-wrapp">
-        <input
-          type="checkbox"
-          checked={props.toDo.completed}
-          onChange={(e) => toDoStore.changeCompletedToDo(props.toDo.id, e)}
-        />
+        <input type="checkbox" checked={props.toDo.completed} onChange={onChangeCompletedToDo} />
       </div>
 
       <div className="todo__info" onClick={onClickToDo}>
@@ -36,6 +40,9 @@ const ToDo = (props: IPropsToDo) => {
         <div className="todo__text">{props.toDo.text}</div>
         <Files toDo={props.toDo} />
       </div>
+      <span className="todo__delete" onClick={onClickDeleteToDo}>
+        Удалить
+      </span>
     </li>
   )
 }

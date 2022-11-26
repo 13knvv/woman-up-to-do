@@ -56,6 +56,15 @@ class ToDoStore {
     return this.toDoList.find((toDo) => toDo.id === id)
   }
 
+  findIndexToDo(id: number) {
+    return this.toDoList.findIndex((toDo) => toDo.id === id)
+  }
+
+  deleteToDo(id: number) {
+    const index = this.findIndexToDo(id)
+    this.toDoList.splice(index, 1)
+  }
+
   changeCompletedToDo(id: number, e: any) {
     this.toDoList.forEach((toDo, index, arr) => {
       if (toDo.id === id) {

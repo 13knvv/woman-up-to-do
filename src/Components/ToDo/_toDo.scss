@@ -1,4 +1,5 @@
 .todo {
+  position: relative;
   display: flex;
   background-color: $color-background-todo;
   width: 100%;
@@ -9,6 +10,19 @@
 
   &:hover {
     box-shadow: $box-shadow-hover;
+  }
+}
+
+.todo__delete {
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.5rem;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
   }
 }
 
@@ -54,4 +68,5 @@
 .todo__text {
   font-size: 0.9rem;
   word-break: break-word;
+  margin-bottom: 1rem;
 }
