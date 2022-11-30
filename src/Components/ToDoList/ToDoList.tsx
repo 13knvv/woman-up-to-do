@@ -10,10 +10,6 @@ const ToDoList = () => {
   const { toDoStore } = useStores()
   const toDoList = toDoStore.toDoList
 
-  useEffect(() => {
-    //toDoStore.getToDoList()
-  }, [])
-
   const toDoComponentsList = toDoList.map((toDo: IToDo) => {
     return <ToDo key={toDo.id} toDo={toDo} />
   })

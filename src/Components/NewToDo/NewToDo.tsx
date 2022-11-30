@@ -16,7 +16,7 @@ const NewToDo = () => {
   }, [])
 
   const onClickSave = () => {
-    toDoStore.saveNewToDo()
+    toDoStore.saveToDo()
     navigate(`/`)
   }
 

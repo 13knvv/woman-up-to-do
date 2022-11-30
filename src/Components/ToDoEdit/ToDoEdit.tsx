@@ -10,7 +10,7 @@ import FormToDo from '../FormToDo/FormToDo'
 const ToDoEdit = () => {
   const { toDoStore } = useStores()
   const toDo = toDoStore.intermediateToDo
-  const files = toDoStore.intermediateToDo.files
+  const completed = toDoStore.intermediateToDo.completed
   const [isEditMode, setIsEditMode] = useState<boolean>(false)
   const { id } = useParams()
   const navigate = useNavigate()
@@ -20,9 +20,16 @@ const ToDoEdit = () => {
     return () => toDoStore.clearIntermediateToDo()
   }, [])
 
+  const onChangeCompleted = async (e: any) => {
+    if (id) {
+     await  toDoStore.updateCompletedToDo(Number(id), e)
+     toDoStore.setIntermediateToDo(Number(id))
+    }
+  }
+
   const onClickSave = () => {
     setIsEditMode(false)
-    toDoStore.saveEditedToDo()
+    toDoStore.saveToDo()
   }
 
   const onClickEdit = () => {
@@ -37,7 +44,7 @@ const ToDoEdit = () => {
   const onClickBack = () => {
     navigate(`/`)
   }
-
+console.log(toDo.files)
   return (
     <div>
       {isEditMode ? (
@@ -58,8 +65,8 @@ const ToDoEdit = () => {
             <div className="to-do-viewing__checkbox">
               <input
                 type="checkbox"
-                checked={toDo.completed}
-                onChange={(e) => toDoStore.changeCompletedToDo(toDo.id, e)}
+                checked={completed}
+                onChange={onChangeCompleted}
               />{' '}
               <span>Выполненно</span>
             </div>

@@ -33,10 +33,12 @@
 
 .to-do-viewing__title {
   margin: 0 0 0.5rem;
+  word-break: break-word;
 }
 
 .to-do-viewing__text {
   margin-bottom: 1rem;
+  word-break: break-word;
 }
 
 .to-do__buttons {

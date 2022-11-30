@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { SyntheticEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStores } from '../../MobX/stores'
 import { IToDo } from '../../MobX/ToDoStore'
@@ -17,14 +18,14 @@ const ToDo = (props: IPropsToDo) => {
     navigate(`edit/${props.toDo.id}`)
   }
 
-  const onChangeCompletedToDo = (e: any) => {
-    toDoStore.changeCompletedToDo(props.toDo.id, e)
+  const onChangeCompletedToDo = (e: SyntheticEvent) => {
+    toDoStore.updateCompletedToDo(props.toDo.id, e)
   }
 
   const onClickDeleteToDo = () => {
     toDoStore.deleteToDo(props.toDo.id)
   }
-
+  console.log(props.toDo.files)
   return (
     <li className={props.toDo.completed ? 'todo todo__completed' : 'todo'}>
       <div className="todo__checkbox-wrapp">
